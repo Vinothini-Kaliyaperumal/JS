@@ -1,40 +1,10 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table</title>
-    <link href="table.css" rel="stylesheet">
-    <script src="table.js"></script>
-</head>
-<body>
-    <table>
-        <thead>
-            <tr>
-                <th>Student Id</th>
-                <th>Name</th>
-                <th>Dateof Birth</th>
-                <th>Gender</th>
-                <th>Joining Date</th>
-                <th>Email</th>
-                <th>Age</th>
-            </tr>
-        </thead>
-        <tbody id="tablebody"></tbody>
-    </table>
-</body>
-</html> -->
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Data Table</title>
+    <script src="table.js"></script>
     <style>
         table {
             width: 100%;
@@ -66,32 +36,47 @@
             </tr>
         </thead>
         <tbody id="tablebody">
-            <!-- Data will be inserted here via JavaScript -->
         </tbody>
     </table>
+    
+</body>
+</html>
 
-    <script>
-        // Runs when the DOM content is fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Retrieve the form data from localStorage
-            const form = JSON.parse(localStorage.getItem('form'));
-
-            // If form data exists in localStorage, display it in the table
-            if (form) {
-                const tablebody = document.getElementById('tablebody');
-                const row = `<tr>
-                    <td>${form.student}</td>
-                    <td>${form.name}</td>
-                    <td>${form.dob}</td>
-                    <td>${form.gender}</td>
-                    <td>${form.date}</td>
-                    <td>${form.email}</td>
-                    <td>${form.age}</td>
-                </tr>`;
-                tablebody.innerHTML = row;
-            }
-        });
-    </script>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Page</title>
+    <link rel="stylesheet" href="table.css">
+    <script src="table.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container tab">
+        <h2 class="details text-center text-black ">Employee Details</h2>
+        <!-- <button class="btn btn-dark fw-bold " onclick="back()">Back<<</button> -->
+        <button class="btn btn-dark fw-bold" onclick="add()">Add Details</button>
+        <div class=" mt-4 table-responsive p-4 card">
+          <table class="table-striped table " id="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>PhoneNo</th>
+                <th>Password</th>
+                <th>C_Password</th>
+                <th>Gender</th>
+                <th>Language</th>
+                <th>Date of birth</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="tabledata">
+            </tbody>
+          </table>
+        </div>
+      </div>
 </body>
 </html>

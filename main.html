@@ -1,55 +1,4 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Crud</title>
-    <link href="main.css" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-   <script defer src="main.js"></script>
-</head>
-<body>
-    <form  id="studentForm">
-       <label for="student">Student Id</label>
-       <input type="text" id="student" name="student"><br>
-       <label for="name">Name</label>
-       <input type="text" id="name" name="name"><br>
-       <label for="dob">Date of Birth</label>
-       <input type="date" id="dob" name="dob"><br>
-       <label for="gender">Gender</label>
-       <input type="text" id="gender" name="gender"><br>
-       <label for="date">Joining Date</label>
-       <input type="date" id="date" name="date"><br>
-       <label for="email">Email</label>
-       <input type="email" id="email" name="email"><br>
-       <label for="age">Age</label>
-       <input type="number" id="age" name="age"><br>
-       <button type="submit">Submit</button>
-    </form>
-</body>
-</html>
-
-
-
-
-
- -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -57,9 +6,7 @@
     <title>Student Form</title>
 </head>
 <body>
-
     <h1>Student Registration Form</h1>
-
     <form id="studentForm">
         <label for="student">Student ID:</label>
         <input type="text" id="student" name="student" required><br><br>
@@ -88,45 +35,104 @@
 
         <button type="submit">Submit</button>
     </form>
-
-    <script>
-        // Handle form submission
-        document.getElementById('studentForm').addEventListener('submit', function(event) {
-            event.preventDefault();  // Prevent the default form submission
-
-            // Gather the form data
-            const form = {
-                student: document.getElementById('student').value,
-                name: document.getElementById('name').value,
-                dob: document.getElementById('dob').value,
-                gender: document.getElementById('gender').value,
-                date: document.getElementById('date').value,
-                email: document.getElementById('email').value,
-                age: document.getElementById('age').value
-            };
-
-            // Send the form data to the backend via a POST request
-            fetch('https://6684d4e456e7503d1ae14dde.mockapi.io/Student', {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(form)
-            })
-            .then(response => response.json())  // Parse the JSON response
-            .then(data => {
-                console.log('Network Response Data:', data);  // Log the network response for debugging
-
-                // Save the response data to localStorage
-                localStorage.setItem('form', JSON.stringify(data));
-
-                // Redirect to the table page to display the data
-                window.location.href = 'table.html';
-            })
-            .catch(error => console.error('Error:', error));  // Handle any errors
-        });
-    </script>
-
 </body>
 </html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud API Form</title>
+    <link rel="stylesheet" href="form.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="form.js"></script>
+</head>
+<body>
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />  
+            <h3 class="welcome">Welcome</h3>
+            <p class="Our">Our heartiest welcome goes to you....</p>
+            <button type="button" onclick="table()"  class="button text-dark"> Table</button>
+        </div>
+
+        <div class="col-md-9 register-right">
+            <div class="tab-content" id="myTabContent">
+                <h3 class="register-heading">Apply as a Employee</h3>
+                <form id="employeeForm" onsubmit="return submitForm(event)">
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" id="name" class="form-control" name="name" placeholder="Username *" value="" />
+                                <div id="name_req" class="error-message"></div>                     
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" id="phonenum"  class="form-control" name="phonenum" placeholder="Phone Num " value=""/>
+                                <div id="phonenum_req" class="error-message"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" id="password" class="form-control" name="password" placeholder="Password *" value="" />
+                                <div id="password_req" class="error-message"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="gen" >Gender *</label><br>
+                                <input type="radio" id="dot-1" name="gender" value="Male" class="ma">
+                                <label for="male">Male</label><br>
+                                <input type="radio" id="dot-2" name="gender" value="Female" class="fm">
+                                <label for="female">Female</label><br>
+                                <div id="gender_req" class="error-message"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" id="email" class="form-control" name="email" placeholder="Email " value=""/>
+                                <div id="email_req" class="error-message"></div>
+                            </div>
+
+                        <div class="form-group">
+                                <input type="text" id="dateofbirth" name="dateofbirth" class="form-control" placeholder=" (mm-dd-yyyy) *" />
+                                <div id="dateofbirth_req" class="error-message"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" id="confirmpassword" class="form-control" name="confirmpassword" placeholder="Confirm Password *" value=""/>
+                                <div id="confirmpassword_req" class="error-message"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="lan">Language </label><br>
+                                <input type="checkbox" id="tamil" name="language" value="Tamil" class="first"/>
+                                <label for="tamil">Tamil</label>
+                                <input type="checkbox"  id="kannada" name="language" value="Kannada" class="first1" />
+                                <label for="kannada">Kannada</label><br>
+                                <input type="checkbox" id="english" name="language" value="English" class="first"/>
+                                <label for="english">English</label>
+                                <input type="checkbox" id="malayalam" name="language" value="Malayalam" class="first"/>
+                                <label for="malayalam">Malayalam</label>
+                                <div id="lang_req" class="error-message"></div>
+                            </div>
+                                <input type="submit" class="btnRegister" value="Register"/>
+                             </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html> 
+
+
+
+
+
 
