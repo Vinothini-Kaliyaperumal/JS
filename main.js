@@ -203,6 +203,34 @@ function table() {
     window.location.href = "table.html";
 }
 
+document.getElementById('studentForm').addEventListener('submit', function(event) {
+  event.preventDefault(); 
+
+  const form = {
+      student: document.getElementById('student').value,
+      name: document.getElementById('name').value,
+      dob: document.getElementById('dob').value,
+      gender: document.getElementById('gender').value,
+      date: document.getElementById('date').value,
+      email: document.getElementById('email').value,
+      age: document.getElementById('age').value
+  };
+
+  // Create a query string from the form data
+  const queryString = new URLSearchParams(form).toString();
+
+  fetch(`https://6684d4e456e7503d1ae14dde.mockapi.io/Student?${queryString}`, {
+      method: "GET",
+  })
+  .then(response => response.json())  
+  .then(data => {
+      console.log('Network Response Data:', data); 
+
+      localStorage.setItem('form', JSON.stringify(data));
+      window.location.href = 'table.html';
+  })
+  .catch(error => console.error('Error:', error));  
+});
 
 
 
